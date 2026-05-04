@@ -23,7 +23,6 @@ A Python bot that monitors concert ticket prices across **StubHub**, **VividSeat
 
 ---
 ## Full Picture in One Diagram
-<img width="653" height="662" alt="Screenshot 2026-05-04 at 2 53 18 PM" src="https://github.com/user-attachments/assets/28a6acae-3002-407f-8aa4-8a9d5869e6df" />
 
 ```
 YOU

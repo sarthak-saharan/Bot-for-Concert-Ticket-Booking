@@ -1,6 +1,6 @@
 # Concert Ticket Price Monitor Bot
 
-A Python bot that monitors concert ticket prices across **StubHub**, **VividSeats**, and **SeatGeek**. Set your price range, sections, and quantity — get Telegram alerts the moment listings match. Polls every 15 minutes, tracks price history, and suppresses duplicate alerts automatically.
+A Python bot that monitors concert ticket prices across **StubHub**, **VividSeats**, and **SeatGeek**. Set your price range, sections, and quantity: get Telegram alerts the moment listings match. Polls every 15 minutes, tracks price history, and suppresses duplicate alerts automatically.
 
 ---
 
@@ -22,7 +22,38 @@ A Python bot that monitors concert ticket prices across **StubHub**, **VividSeat
 - Your Telegram chat ID
 
 ---
+## Full Picture in One Diagram
+YOU
+ │
+ │  Edit config.yaml once
+ │  (concert, sections, price, Telegram ID)
+ │
+ ▼
+main.py  ──── "run" command ────►  monitor.py
+                                       │
+                          Every 15 min │
+                                       ├──► stubhub.py   → fetches listings
+                                       ├──► seatgeek.py  → fetches listings  
+                                       └──► vividseats.py → fetches listings
+                                                │
+                                                ▼
+                                        filter_engine.py
+                                        (section? price? qty? cooldown?)
+                                                │
+                                    ┌───────────┴───────────┐
+                                    │ MATCH                 │ NO MATCH
+                                    ▼                       ▼
+                              notifier.py            notifier.py
+                           "Found one! Here's      "Nothing yet,
+                            the link →"             checking again
+                                    │                in 15 min"
+                                    ▼
+                              YOUR TELEGRAM
+                                    +
+                              database.py
+                           (saves price history)
 
+---
 ## Installation
 
 **1. Clone the repository**

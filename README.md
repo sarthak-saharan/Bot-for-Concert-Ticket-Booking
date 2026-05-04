@@ -25,6 +25,38 @@ A Python bot that monitors concert ticket prices across **StubHub**, **VividSeat
 ## Full Picture in One Diagram
 <img width="653" height="662" alt="Screenshot 2026-05-04 at 2 53 18 PM" src="https://github.com/user-attachments/assets/28a6acae-3002-407f-8aa4-8a9d5869e6df" />
 
+```
+YOU
+ │
+ │  Edit config.yaml once
+ │  (concert, sections, price, Telegram ID)
+ │
+ ▼
+main.py  ──── "run" command ────►  monitor.py
+                                       │
+                          Every 15 min │
+                                       ├──► stubhub.py   → fetches listings
+                                       ├──► seatgeek.py  → fetches listings  
+                                       └──► vividseats.py → fetches listings
+                                                │
+                                                ▼
+                                        filter_engine.py
+                                        (section? price? qty? cooldown?)
+                                                │
+                                    ┌───────────┴───────────┐
+                                    │ MATCH                 │ NO MATCH
+                                    ▼                       ▼
+                              notifier.py            notifier.py
+                           "Found one! Here's      "Nothing yet,
+                            the link →"             checking again
+                                    │                in 15 min"
+                                    ▼
+                              YOUR TELEGRAM
+                                    +
+                              database.py
+                           (saves price history)
+```
+
 ---
 ## Installation
 

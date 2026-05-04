@@ -1,0 +1,47 @@
+settings:
+  poll_interval_minutes: 15
+  log_level: INFO
+  db_path: price_history.db
+  user_agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML,
+    like Gecko) Chrome/124.0.0.0 Safari/537.36
+platforms:
+  seatgeek:
+    enabled: true
+    client_id: ''
+    client_secret: ''
+  stubhub:
+    enabled: true
+  vividseats:
+    enabled: true
+notifications:
+  email:
+    enabled: false
+    smtp_host: smtp.gmail.com
+    smtp_port: 587
+    username: ''
+    password: ''
+    from_address: ''
+  telegram:
+    enabled: false
+    bot_token: ""           # ← FILL IN: your Telegram bot token from @BotFather
+alerts:
+  - id: example01
+    event_name: "Artist Name"
+    event_date: null        # or "YYYY-MM-DD"
+    sections:
+      - "floor"
+      - "section 1"
+    min_price: 100.0
+    max_price: 500.0
+    max_quantity_needed: 2
+    platforms:
+      - seatgeek
+      - stubhub
+      - vividseats
+    notify_email: null
+    notify_telegram_chat_id: ""  # ← FILL IN: your Telegram chat ID
+    active: true
+    alert_cooldown_minutes: 60
+    last_alerted: {}
+    stubhub_event_url: ""   # ← Optional: paste direct StubHub event URL
+    stubhub_section_urls: [] # ← Optional: per-section filtered URLs for precise matching
